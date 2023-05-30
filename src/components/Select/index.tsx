@@ -8,6 +8,7 @@ const Select = memo<SelectType.SelectProps>((props) => (
     {...props}
     multiple={false}
     {...props?.onSelect && { onSelect: (data) => props.onSelect(data[0] || '') }}
+    {...typeof props?.defaultValue !== 'undefined' && { defaultValues: [props.defaultValue] }}
   />
 ));
 

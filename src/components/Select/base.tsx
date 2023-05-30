@@ -42,12 +42,13 @@ const Base = memo<SelectType.Props>((props) => {
     multiple = false,
     searchable = false,
     notFoundTextStyle = {},
-    noDataText
+    noDataText,
+    defaultValues = []
   } = props;
 
   const placeholder = mainPlaceHolder || (searchable ? DEFAULT_SEARCH_PLACEHOLDER : DEFAULT_PLACEHOLDER);
 
-  const [selected, setSelected] = useState<SelectType.DataValue[]>([]);
+  const [selected, setSelected] = useState<SelectType.DataValue[]>(defaultValues);
   const [opened, setOpened] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
   const [locationConfig, setLocationConfig] = useState<{x:number, y:number}>({ x: 0, y: 0 });

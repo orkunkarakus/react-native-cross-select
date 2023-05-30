@@ -51,6 +51,7 @@ export type Props = {
      * - Default false
      */
     searchable?:boolean;
+    defaultValues?:DataValue[]
 } & SharedProps
 
 export type ListProps = {
@@ -72,7 +73,7 @@ export type ListItemProps = {
 
 type OnSelectCallback<T = DataValue> = (data:T)=>void;
 
-export type SelectProps = Omit<Props, 'multiple'|'onSelect'> & { onSelect:OnSelectCallback}
+export type SelectProps = Omit<Props, 'multiple'|'onSelect' | 'defaultValues'> & { onSelect:OnSelectCallback; defaultValue?:DataValue}
 export type MultipleSelectProps = Omit<Props, 'multiple'>;
 
 export type SelectOnSelectProp = OnSelectCallback;
