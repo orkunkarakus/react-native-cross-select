@@ -1,6 +1,6 @@
 {
-  "name": "react-native-select",
-  "version": "0.1.0",
+  "name": "react-native-cross-select",
+  "version": "0.0.1",
   "description": "test",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -16,7 +16,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-select.podspec",
+    "react-native-cross-select.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build"
@@ -36,13 +36,16 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/orkunkarakus/react-native-select",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orkunkarakus/react-native-cross-select.git"
+  },
   "author": "Orkun Karakus <ork.karakus@gmail.com> (https://github.com/orkunkarakus)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/orkunkarakus/react-native-select/issues"
+    "url": "https://github.com/orkunkarakus/react-native-cross-select/issues"
   },
-  "homepage": "https://github.com/orkunkarakus/react-native-select#readme",
+  "homepage": "https://github.com/orkunkarakus/react-native-cross-select#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -160,5 +163,9 @@
     "@gorhom/portal": "^1.0.14",
     "react-native-click-outside": "^0.1.0",
     "react-native-svg": "^13.9.0"
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
   }
 }

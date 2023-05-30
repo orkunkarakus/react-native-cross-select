@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-select": [
+      "react-native-cross-select": [
         "./src/index"
       ]
     },

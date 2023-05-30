@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
-import Select, { ISelect, MultipleSelect } from 'react-native-select';
+import Select, { ISelect, MultipleSelect } from 'react-native-cross-select';
 
 const MOCK_DATA = Array(20).fill(0).map((_item, _index) => ({
   value: _index + 1,

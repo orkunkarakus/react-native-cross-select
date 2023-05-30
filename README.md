@@ -1,4 +1,4 @@
-# react-native-select
+# react-native-cross-select
 
 Select component for react native
 
@@ -15,12 +15,12 @@ Select component for react native
 
 With NPM
 ```sh
-npm install react-native-select
+npm install react-native-cross-select
 ```
 With YARN
 
 ```sh
-yarn add react-native-select
+yarn add react-native-cross-select
 ```
 -------
 ## Usage
@@ -28,7 +28,7 @@ yarn add react-native-select
 - Add provider to main app file
 
 ```ts
-import { SelectProvider } from 'react-native-select';
+import { SelectProvider } from 'react-native-cross-select';
 
 const Index = () => (
   <SelectProvider>
@@ -44,7 +44,7 @@ const Index = () => (
 - Single Select
 
 ```ts
-import Select, { ISelect } from 'react-native-select';
+import Select, { ISelect } from 'react-native-cross-select';
 
 const DATA = [
     {
@@ -73,7 +73,7 @@ const App = () => {
 - Multiple Select
 
 ```ts
-import { ISelect, MultipleSelect } from 'react-native-select';
+import { ISelect, MultipleSelect } from 'react-native-cross-select';
 
 const DATA = [
     {
@@ -102,7 +102,7 @@ const App = () => {
 - Single Select With Search
 
 ```ts
-import Select, { ISelect } from 'react-native-select';
+import Select, { ISelect } from 'react-native-cross-select';
 
 const DATA = [
     {
@@ -131,7 +131,7 @@ const App = () => {
 - Multiple Select With Search
 
 ```ts
-import { ISelect, MultipleSelect } from 'react-native-select';
+import { ISelect, MultipleSelect } from 'react-native-cross-select';
 
 const DATA = [
     {
