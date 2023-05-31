@@ -35,7 +35,13 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "react native select",
+    "select",
+    "dropdown",
+    "portal",
+    "cross select",
+    "multiple select"
   ],
   "repository": {
     "type": "git",
