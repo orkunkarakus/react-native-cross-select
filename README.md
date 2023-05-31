@@ -186,12 +186,6 @@ const App = () => {
 
 --------
 
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
--------
-
 ## Thanks for
 
 - [@gorhom/portal](https://github.com/gorhom/react-native-portal)
