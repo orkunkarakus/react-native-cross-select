@@ -33,7 +33,8 @@ const List = memo<SelectType.ListProps>((props) => {
   } = props;
 
   const portalKey = `${Math.random()}-select-portal`;
-  const data = search ? mainData.filter((item) => item.label.includes(search)) : mainData;
+  // Search with case insensitive
+  const data = search ? mainData.filter((item) => item.label.match(new RegExp(search, 'i'))) : mainData;
   const componentRef = useClickOutside<View>(handleClose);
 
   return (

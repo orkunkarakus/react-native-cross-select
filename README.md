@@ -181,6 +181,8 @@ const App = () => {
 |  listItemSelectedBackgroundColor | Custom style for list item while selected state | RN style object  |  {} | false |
 |  notFoundTextStyle | Not found text style | RN style object  |  {} | false |
 |  noDataText |  No data text | string  |  No data found | false |
+|  defaultValue |  Default value [For single select] | string  | - | false |
+|  defaultValues |  Default values [For multiple select] | array  | - | false |
 
 --------
 
