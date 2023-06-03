@@ -45,6 +45,8 @@ jobs:
       - name: Update version
         run: |
           npm version patch --no-git-tag-version
+          git add package.json
+          git commit -m "version upgraded" --no-verify
           git push --force-with-lease
           echo "Version Upgraded"
 
