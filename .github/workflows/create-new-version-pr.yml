@@ -1,0 +1,84 @@
+# Create New Versions PR
+
+name: Create New Version PR
+on:
+  workflow_call:
+    inputs:
+      TARGET_BRANCH:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
+
+jobs:
+  version:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.TARGET_BRANCH }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      # Git configiration
+      - name: Git configuration
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Create Temporary Branch For Version
+      - name: Create Temporary Branch For Version
+        run: |
+          BRANCH_NAME=version-update-${{ inputs.version }}
+          git checkout -b "$BRANCH_NAME"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Create Temporary Branch For Version
+      - name: Create Temporary Branch For Version
+        run: |
+          BRANCH_NAME=version-update-${{ inputs.version }}
+          git checkout -b "$BRANCH_NAME"
+          git push --set-upstream origin "$BRANCH_NAME"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Push Branch
+      - name: Push Branch
+        run: |
+          BRANCH_NAME=version-update-${{ inputs.version }}
+          git push --set-upstream origin "$BRANCH_NAME"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: createPR
+        name: Create Pull Request
+        run: |
+          gh pr create \
+          --title "Update version to ${{ inputs.version }} on ${{ inputs.TARGET_BRANCH }}" \
+          --body "Update version to ${{ inputs.version }}" \
+          --label "automerge" \
+          --base ${{ inputs.TARGET_BRANCH }}
+          sleep 5
+          echo "PR_NUMBER=$(gh pr view --json 'number' --jq '.number')" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Approve PR
+      - name: Approve PR
+        run: gh pr review --approve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Merge The PR
+      - name: Approve PR
+        run: gh pr merge ${{ steps.createPR.outputs.PR_NUMBER }} --merge --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

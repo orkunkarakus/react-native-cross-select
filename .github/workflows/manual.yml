@@ -5,10 +5,3 @@ on:
 jobs:
   getVersion:
     uses: orkunkarakus/react-native-cross-select/.github/workflows/get-version-from-package.yml@main
-
-  increaseVersion:
-    needs: getVersion
-    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml@main
-    with:
-      version: ${{ needs.getVersion.outputs.version }}
-      releaseType: patch
