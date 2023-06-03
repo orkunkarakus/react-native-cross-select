@@ -18,7 +18,15 @@ jobs:
           # Fetch full depth, otherwise the last step overwrites the last commit's parent, essentially removing the graph.
           fetch-depth: 0
 
-        # Echo old version
+      # Git configiration
+      - name: Git configuration
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      # Echo old version
       - name: Echo Old version
         run: echo "Old version is $(npm pkg get version)"
 
