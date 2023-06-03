@@ -1,0 +1,15 @@
+name: 'Increase package version'
+description: 'Increase the package'
+inputs:
+    CURRENT_VERSION:
+        description: Current version
+        required: true
+    RELEASE_TYPE:
+        description: Release type
+        required: true
+outputs:
+    NEW_VERSION:
+        description: The new version
+runs:
+    using: 'node16'
+    main: './index.js'

@@ -1,0 +1,45 @@
+# Increase version
+
+name: Increase version
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      releaseType:
+        required: true
+        type: string
+        description: "Release Type; One of {patch - major - minor}"
+        default: "patch"
+
+    outputs:
+      version:
+        description: "Increased version"
+        value: ${{ jobs.increase.outputs.version }}
+
+jobs:
+  increase:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.returnVersion.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      # Increase Version
+      - id: increaseVersion
+        name: Increase Version
+        uses: orkunkarakus/react-native-cross-select/.github/action/version/action.yml@main
+        with:
+          CURRENT_VERSION: ${{ inputs.version }}
+          RELEASE_TYPE: ${{ inputs.releaseType }}
+
+      # Return Version
+      - id: returnVersion
+        name: Return Version
+        run: |
+          echo "New version is ${{ steps.increaseVersion.outputs.NEW_VERSION }}"
+          echo "version=${{ steps.increaseVersion.outputs.NEW_VERSION }}" >> $GITHUB_OUTPUT

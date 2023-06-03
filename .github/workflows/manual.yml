@@ -3,9 +3,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  version:
-    permissions:
-      contents: write
-    uses: orkunkarakus/react-native-cross-select/.github/workflows/update-version.yml@main
+  getVersion:
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/get-version-from-package.yml@main
+
+  increaseVersion:
+    needs: getVersion
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml@main
     with:
-      branch: main
+      version: ${{ needs.getVersion.outputs.version }}

@@ -1,0 +1,27 @@
+# Get version from Package (npm)
+
+name: Get version from package
+on:
+  workflow_call:
+    outputs:
+      version:
+        description: "The version of published package"
+        value: ${{ jobs.version.outputs.version }}
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.getVersion.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      # Get Package Version
+      - id: getVersion
+        name: Get Package Version
+        run: |
+          echo "${{ github.event.repository.name }}'s package version is $(npm view ${{ github.event.repository.name }} version)"
+          echo "version=$(npm view ${{ github.event.repository.name }} version)" >> $GITHUB_OUTPUT

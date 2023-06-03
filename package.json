@@ -61,6 +61,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
     "@arkweid/lefthook": "^0.7.7",
     "@babel/eslint-parser": "^7.18.9",
     "@commitlint/config-conventional": "^17.6.3",
@@ -92,6 +94,7 @@
     "react-native": "0.68.2",
     "react-native-builder-bob": "^0.18.3",
     "release-it": "^15.0.0",
+    "semver": "^7.5.1",
     "typescript": "^4.5.2"
   },
   "resolutions": {

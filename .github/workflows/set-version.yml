@@ -1,10 +1,13 @@
-# Increase version from Package
+# Increase version from main branch
 
-name: Increase Version (From Package)
+name: Set Version
 on:
   workflow_call:
     inputs:
       branch:
+        required: true
+        type: string
+      version:
         required: true
         type: string
 
@@ -20,6 +23,14 @@ jobs:
           node-version: 19
           ref: ${{ inputs.branch }} # Set branch from top
 
+      # Git configiration
+      - name: Git configuration
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Echo old version
       - name: Echo Old version
         run: echo "Old version is $(npm pkg get version)"
@@ -27,8 +38,11 @@ jobs:
       # Update Package Version
       - name: Update version
         run: |
-          npm view ${{ github.event.repository.name }} version
-          echo "XX ${{ github.event.repository.name }}"
+          npm pkg set version=${{inputs.version}}
+          git add package.json
+          git commit -m "Update version to ${{inputs.version}}" --no-verify
+          git push --force-with-lease
+          echo "Version Upgraded"
 
       # Echo new Version
       - name: Echo New version
