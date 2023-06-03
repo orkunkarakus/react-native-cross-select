@@ -24,11 +24,12 @@ jobs:
       version: ${{ steps.returnVersion.outputs.version }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
-      - uses: Borales/actions-yarn@v4.2.0
         with:
           node-version: 19
-          fetch-depth: 0
+      - uses: Borales/actions-yarn@v4.2.0
 
       # Add required dependencies
       - name: Add Dependencies
