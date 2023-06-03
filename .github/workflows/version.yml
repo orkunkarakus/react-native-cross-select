@@ -46,4 +46,4 @@ jobs:
         run: echo "New version is $(npm pkg get version)"
 
       - name: Echo XX
-        run: echo "XX ${{ github.repository }}"
+        run: echo "XX ${{ github.event.repository.name }}"
