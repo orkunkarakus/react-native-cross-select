@@ -4,6 +4,8 @@ on:
 
 jobs:
   version:
+    permissions:
+      contents: write
     uses: orkunkarakus/react-native-cross-select/.github/workflows/version.yml@main
     with:
       branch: main
