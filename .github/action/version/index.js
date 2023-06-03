@@ -2,8 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const semver = require('semver')
 
-const MAX_VERSION_LEVEL = 100;
-
 try {
   // Ex:1.0.0
   const currentVersion = core.getInput('CURRENT_VERSION');

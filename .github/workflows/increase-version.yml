@@ -10,11 +10,11 @@ on:
       releaseType:
         required: true
         type: string
-        description: "Release Type; One of {patch - major - minor}"
+        description: One of {patch - major - minor}
 
     outputs:
       version:
-        description: "Increased version"
+        description: Increased version
         value: ${{ jobs.increase.outputs.version }}
 
 jobs:
@@ -25,6 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+      - uses: Borales/actions-yarn@v4.2.0
         with:
           node-version: 19
           fetch-depth: 0
@@ -32,9 +33,7 @@ jobs:
       # Add required dependencies
       - name: Add Dependencies
         run: |
-          yarn add @actions/core
-          yarn add @actions/github
-          yarn add semver
+          yarn install --immutable --immutable-cache --check-cache
 
       # Increase Version
       - id: increaseVersion
