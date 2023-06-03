@@ -17,6 +17,5 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: .github/workflows/version.yml
-        with:
-          branch: main
+      - uses: actions/checkout@v3
+      - uses: <org>/<central-workflow-repo>/.github/workflows/version.yml
