@@ -17,6 +17,4 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: My first step
-        uses: ./.github/workflows/version.yml
+      - uses: orkunkarakus/react-native-cross-select/.github/workflows/version.yml@main
