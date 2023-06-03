@@ -10,7 +10,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/version.yml
+      - uses: .github/workflows/version.yml
         with:
           branch: main
 
@@ -18,4 +18,4 @@ jobs:
     needs: version
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/release.yml
+      - uses: .github/workflows/release.yml

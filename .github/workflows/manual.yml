@@ -17,6 +17,6 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/version.yml
+      - uses: .github/workflows/version.yml
         with:
           branch: main
