@@ -31,7 +31,7 @@ jobs:
       # Increase Version
       - id: increaseVersion
         name: Increase Version
-        uses: ./.github/action/version/action.yml@main
+        uses: orkunkarakus/react-native-cross-select/.github/action/version@main
         with:
           CURRENT_VERSION: ${{ inputs.version }}
           RELEASE_TYPE: ${{ inputs.releaseType }}
