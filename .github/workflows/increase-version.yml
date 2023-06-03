@@ -11,7 +11,6 @@ on:
         required: true
         type: string
         description: "Release Type; One of {patch - major - minor}"
-        default: "patch"
 
     outputs:
       version:
