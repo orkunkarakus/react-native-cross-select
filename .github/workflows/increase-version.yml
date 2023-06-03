@@ -29,6 +29,13 @@ jobs:
           node-version: 19
           fetch-depth: 0
 
+      # Add required dependencies
+      - name: Add Dependencies
+        run: |
+          yarn add @actions/core
+          yarn add @actions/github
+          yarn add semver
+
       # Increase Version
       - id: increaseVersion
         name: Increase Version
