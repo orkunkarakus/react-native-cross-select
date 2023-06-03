@@ -29,7 +29,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - uses: Borales/actions-yarn@v4.2.0
 
       # Add required dependencies
       - name: Add Dependencies
