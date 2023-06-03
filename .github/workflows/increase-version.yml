@@ -32,8 +32,7 @@ jobs:
 
       # Add required dependencies
       - name: Add Dependencies
-        run: |
-          yarn install --immutable --immutable-cache --check-cache
+        run: yarn install --immutable --immutable-cache --check-cache
 
       # Increase Version
       - id: increaseVersion
