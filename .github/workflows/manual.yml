@@ -8,7 +8,7 @@ jobs:
 
   increaseVersion:
     needs: getVersion
-    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml@main
     with:
-      version: "1.0.0"
+      version: ${{ needs.getVersion.outputs.version }}
       releaseType: patch
