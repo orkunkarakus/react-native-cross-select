@@ -1,6 +1,6 @@
-# Increase version from main branch
+# Increase version from Package
 
-name: Increase Version (From main)
+name: Increase Version (From Package)
 on:
   workflow_call:
     inputs:
@@ -44,6 +44,3 @@ jobs:
       # Echo new Version
       - name: Echo New version
         run: echo "New version is $(npm pkg get version)"
-
-      - name: Echo XX
-        run: echo "XX ${{ github.repository }}"
