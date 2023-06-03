@@ -1,56 +1,26 @@
 name: Release package
 on:
-  pull_request:
-    branches:
-      - master
-      - develop
-    types: closed
+  workflow_call:
+
 jobs:
-  version:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 19
-          registry-url: https://registry.npmjs.org/
-          # Fetch full depth, otherwise the last step overwrites the last commit's parent, essentially removing the graph.
-          fetch-depth: 0
-
-      # Git configiration
-      - name: Git configuration
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-
-      # Echo old version
-      - name: Echo Old version
-        run: echo "Old version is $(npm pkg get version)"
-
-      # Update Package Version
-      - name: Update version
-        run: |
-          npm version patch --no-git-tag-version
-          git push --force-with-lease
-          echo "Version Upgraded"
-
-      # Echo new Version
-      - name: Echo New version
-        run: echo "New version is $(npm pkg get version)"
-
   release:
-    needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+      - uses: Borales/actions-yarn@v4.2.0
         with:
           node-version: 19
           registry-url: https://registry.npmjs.org/
 
-      # Update Package Version
-      - name: Send greeting
-        run: echo "Hello $(npm pkg get version)"
+      # Install Dependencies
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+
+      # Build package
+      - name: Build package
+        run: yarn build
+
+      # Release package
+      - name: Release package
+        run: yarn release:dry

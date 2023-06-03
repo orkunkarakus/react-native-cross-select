@@ -1,0 +1,21 @@
+name: Versioning
+on:
+  pull_request:
+    branches:
+      - main
+    types: closed
+
+jobs:
+  version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/version.yml
+        with:
+          branch: main
+
+  release:
+    needs: version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/release.yml
