@@ -17,6 +17,7 @@ jobs:
     needs: createNewVersion
     permissions:
       contents: write
+      pull-requests: write
     uses: orkunkarakus/react-native-cross-select/.github/workflows/merge-new-version.yml@main
     with:
       version: ${{ needs.createNewVersion.outputs.version }}
