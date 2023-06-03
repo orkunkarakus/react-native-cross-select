@@ -4,6 +4,6 @@ on:
 
 jobs:
   version:
-    - uses: orkunkarakus/react-native-cross-select/.github/workflows/version.yml@main
-      with:
-        branch: main
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/version.yml@main
+    with:
+      branch: main
