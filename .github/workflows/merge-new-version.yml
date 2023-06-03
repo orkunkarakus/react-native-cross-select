@@ -33,28 +33,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Create Temporary Branch For Version
-      - name: Create Temporary Branch For Version
+      - id: createTempBranch
+        name: Create Temporary Branch For Version
         run: |
           BRANCH_NAME=version-update-${{ inputs.version }}
           git checkout -b "$BRANCH_NAME"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Create Temporary Branch For Version
-      - name: Create Temporary Branch For Version
-        run: |
-          BRANCH_NAME=version-update-${{ inputs.version }}
-          git checkout -b "$BRANCH_NAME"
-          git push --set-upstream origin "$BRANCH_NAME"
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Echo old version
+      - name: Echo Old version
+        run: echo "Old version is $(npm pkg get version)"
+
+      # Version Refactoring
+      - name: Version Refactoring
+        run: |
+          npm pkg set version=${{ inputs.version }}
+          git add package.json
+          git commit -m "Update version to ${{ inputs.version }}" --no-verify
+          echo "Version Upgraded"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Echo old version
+      - name: Echo New version
+        run: echo "New version is $(npm pkg get version)"
+
       # Push Branch
       - name: Push Branch
         run: |
-          BRANCH_NAME=version-update-${{ inputs.version }}
-          git push --set-upstream origin "$BRANCH_NAME"
+          git push --set-upstream origin "${{steps.createTempBranch.outputs.BRANCH_NAME}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

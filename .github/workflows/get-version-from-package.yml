@@ -19,10 +19,6 @@ jobs:
         with:
           node-version: 19
 
-      - name: ss
-        run: |
-          BRANCH_NAME=version-update-krs
-          echo "BRANCH_NAME=$BRANCH_NAME"
       # Get Package Version
       - id: getVersion
         name: Get Package Version

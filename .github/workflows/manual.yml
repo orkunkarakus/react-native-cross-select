@@ -5,3 +5,17 @@ on:
 jobs:
   getVersion:
     uses: orkunkarakus/react-native-cross-select/.github/workflows/get-version-from-package.yml@main
+
+  createNewVersion:
+    needs: getVersion
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml@main
+    with:
+      version: ${{ needs.getVersion.outputs.version }}
+      releaseType: patch
+
+  saveVersion:
+    needs: createNewVersion
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/merge-new-version.yml@main
+    with:
+      version: ${{ needs.createNewVersion.outputs.version }}
+      TARGET_BRANCH: main
