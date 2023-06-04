@@ -15,6 +15,7 @@ jobs:
 
   saveVersion:
     needs: createNewVersion
+    secrets: inherit
     permissions:
       contents: write
       pull-requests: write
