@@ -75,6 +75,7 @@ jobs:
       # Push Branch
       - name: Push Branch
         run: |
+          git remote add origin https://github.com/orkunkarakus/react-native-cross-select.git
           git push --set-upstream origin "${{steps.createTempBranch.outputs.BRANCH_NAME}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
