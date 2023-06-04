@@ -42,7 +42,7 @@ jobs:
           git config --global user.name "apricotify"
           git config --global user.email "apricotify@orkcorp.com"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       # Create Temporary Branch For Version
       - id: createTempBranch
@@ -52,7 +52,7 @@ jobs:
           git checkout -b "$BRANCH_NAME"
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       # Echo old version
       - name: Echo Old version
@@ -66,7 +66,7 @@ jobs:
           git commit -m "Update version to ${{ inputs.version }}" --no-verify
           echo "Version Upgraded"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       # Echo old version
       - name: Echo New version
@@ -77,7 +77,7 @@ jobs:
         run: |
           git push --set-upstream origin "${{steps.createTempBranch.outputs.BRANCH_NAME}}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       - id: createPR
         name: Create Pull Request
@@ -90,16 +90,16 @@ jobs:
           sleep 5
           echo "PR_NUMBER=$(gh pr view --json 'number' --jq '.number')" >> "$GITHUB_OUTPUT"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       # Approve PR
       - name: Approve PR
         run: gh pr review --approve
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
 
       # Merge The PR
       - name: Approve PR
         run: gh pr merge ${{ steps.createPR.outputs.PR_NUMBER }} --merge --delete-branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
