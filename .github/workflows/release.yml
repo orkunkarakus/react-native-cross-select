@@ -5,7 +5,7 @@ on:
 jobs:
   release:
     permissions:
-      contents: read
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,3 +25,5 @@ jobs:
       # Release package
       - name: Release package
         run: yarn release:dry
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}

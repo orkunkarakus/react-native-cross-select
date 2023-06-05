@@ -6,16 +6,37 @@ on:
     types: closed
 
 jobs:
-  version:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: .github/workflows/version.yml
-        with:
-          branch: main
+  # Get Current Version On Package Registry
+  getVersion:
+    if: |
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'automerge')
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/get-version-from-package.yml@main
 
+  # Create New Version From Package Registry
+  createNewVersion:
+    needs: getVersion
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/increase-version.yml@main
+    with:
+      version: ${{ needs.getVersion.outputs.version }}
+      releaseType: patch
+
+  # Merge New Version To Branch
+  saveVersion:
+    needs: createNewVersion
+    secrets: inherit
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/merge-new-version.yml@main
+    with:
+      version: ${{ needs.createNewVersion.outputs.version }}
+      TARGET_BRANCH: main
+
+  # Release version to npm
   release:
-    needs: version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: .github/workflows/release.yml
+    needs: saveVersion
+    secrets: inherit
+    permissions:
+      contents: write
+    uses: orkunkarakus/react-native-cross-select/.github/workflows/release.yml@main
