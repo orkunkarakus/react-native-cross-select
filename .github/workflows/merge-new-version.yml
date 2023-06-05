@@ -97,10 +97,10 @@ jobs:
       - name: Approve PR
         run: gh pr review --approve
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Merge The PR
-      - name: Approve PR
+      - name: Merge Pr
         run: gh pr merge ${{ steps.createPR.outputs.PR_NUMBER }} --merge --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
