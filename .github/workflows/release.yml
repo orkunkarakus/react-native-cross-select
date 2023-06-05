@@ -22,7 +22,7 @@ jobs:
       - name: Build package
         run: yarn build
 
-      # Release package
+      # Release package the registry
       - name: Release package
         run: yarn release:dry
         env:
