@@ -48,6 +48,7 @@ jobs:
       - id: createTempBranch
         name: Create Temporary Branch For Version
         run: |
+          git pull
           BRANCH_NAME=version-update-${{ inputs.version }}
           git checkout -b "$BRANCH_NAME"
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
