@@ -26,7 +26,7 @@ jobs:
 
       # Approve PR
       - name: Approve PR
-        if: steps.checkIsOwner.outputs.IS_CODE_OWNER==true
+        if: ${{ steps.checkIsOwner.outputs.IS_CODE_OWNER == 'true' }}
         run: gh pr review ${{ github.event.pull_request.id }} --approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
