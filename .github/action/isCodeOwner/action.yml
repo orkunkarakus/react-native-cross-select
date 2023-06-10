@@ -1,0 +1,12 @@
+name: 'Check Is Code Owner'
+description: 'Check user is code owner. (Like is pr mergeable)'
+inputs:
+    USERNAME:
+        description: Username of pr creator
+        required: true
+outputs:
+    IS_CODE_OWNER:
+        description: Is user code owner
+runs:
+    using: 'node16'
+    main: './index.js'

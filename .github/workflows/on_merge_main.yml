@@ -10,7 +10,7 @@ jobs:
   getVersion:
     if: |
       github.event.pull_request.merged == true &&
-      contains(github.event.pull_request.labels.*.name, 'automerge')
+      contains(github.event.pull_request.labels.*.name, 'automerge') == false
     uses: orkunkarakus/react-native-cross-select/.github/workflows/get-version-from-package.yml@main
 
   # Create New Version From Package Registry
