@@ -51,7 +51,12 @@ export type Props = {
      * - Default false
      */
     searchable?:boolean;
-    defaultValues?:DataValue[]
+    defaultValues?:DataValue[];
+    /**
+     * Render with portal
+     * - Default true
+     */
+      withPortal?:boolean;
 } & SharedProps
 
 export type ListProps = {
@@ -63,6 +68,7 @@ export type ListProps = {
     selectedItemValues:DataValue[];
     search:string;
     handleClose:()=>void;
+    withPortal:boolean;
 } & SharedProps
 
 export type ListItemProps = {

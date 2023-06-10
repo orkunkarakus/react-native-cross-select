@@ -7,8 +7,8 @@ import List from './List';
 import ClickableBox from './Box';
 import SearchableBox from './SearchableBox';
 
-const DEFAULT_HORIZONTAL_PADDING = 5;
-const DEFAULT_ARROW_SIZE = 20;
+const DEFAULT_HORIZONTAL_PADDING = 10;
+const DEFAULT_ARROW_SIZE = 8;
 const DEFAULT_PLACEHOLDER = 'Please select...';
 const DEFAULT_SEARCH_PLACEHOLDER = 'Search here...';
 const DEFAULT_HEIGHT = 40;
@@ -43,7 +43,8 @@ const Base = memo<SelectType.Props>((props) => {
     searchable = false,
     notFoundTextStyle = {},
     noDataText,
-    defaultValues = []
+    defaultValues = [],
+    withPortal = true
   } = props;
 
   const placeholder = mainPlaceHolder || (searchable ? DEFAULT_SEARCH_PLACEHOLDER : DEFAULT_PLACEHOLDER);
@@ -155,6 +156,7 @@ const Base = memo<SelectType.Props>((props) => {
         handleClose={() => setOpened(false)}
         notFoundTextStyle={notFoundTextStyle}
         noDataText={noDataText}
+        withPortal={withPortal}
       />
       )}
     </>

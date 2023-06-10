@@ -189,8 +189,6 @@ const App = () => {
 ## Thanks for
 
 - [@gorhom/portal](https://github.com/gorhom/react-native-portal)
-- [react-native-click-outside](https://github.com/jakex7/react-native-click-outside)
-- [react-native-svg](https://github.com/software-mansion/react-native-svg)
 
 -------
 

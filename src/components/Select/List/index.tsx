@@ -3,9 +3,9 @@ import {
   FlatList, StyleSheet, Text, View
 } from 'react-native';
 import { Portal } from '@gorhom/portal';
-import { useClickOutside } from 'react-native-click-outside';
 import type { Select as SelectType } from '../../../types';
 import ListItem from './item';
+import ClickOutsideOverlay from '../../ClickOutsideOverlay';
 
 const DEFAULT_HEIGHT = 300;
 const DEFAULT_BG_COLOR = '#fff';
@@ -35,12 +35,12 @@ const List = memo<SelectType.ListProps>((props) => {
   const portalKey = `${Math.random()}-select-portal`;
   // Search with case insensitive
   const data = search ? mainData.filter((item) => item.label.match(new RegExp(search, 'i'))) : mainData;
-  const componentRef = useClickOutside<View>(handleClose);
 
   return (
     <Portal name={portalKey} key={portalKey}>
+      <ClickOutsideOverlay onClick={handleClose} />
       <View
-        ref={componentRef}
+        /* ref={componentRef} */
         style={[styles.container, {
           top: locationConfig.y + boxHeight,
           left: locationConfig.x,

@@ -54,16 +54,15 @@ const ClickableBox = memo<SelectType.ClickableProps>((props) => {
           ...selected.length
             ? [styles.text, textStyle]
             : [styles.placeHolderText, placeHolderTextStyle],
-          { width: width - (horizontalPadding * 2) - arrowSize }
+          { width: width - (horizontalPadding * 2) - (arrowSize * 1.5) }
         ]}
         numberOfLines={1}
       >
         {selected.length ? foundLabel : placeholder}
       </Text>
       <ArrowDownIcon
-        width={arrowSize}
-        height={arrowSize}
-        {...selected.length ? { stroke: arrowColorOnSelected } : { stroke: arrowColor }}
+        size={arrowSize}
+        color={selected.length ? arrowColorOnSelected : arrowColor}
       />
     </View>
   );
