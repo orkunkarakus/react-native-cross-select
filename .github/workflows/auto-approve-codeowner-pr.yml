@@ -2,11 +2,21 @@
 
 name: Auto Approve Code Owner PR
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    types: opened
 
 jobs:
-  isOwner:
+  checkIsOwner:
+    uses: orkunkarakus/react-native-cross-select/.github/action/isCodeOwner@main
+    with:
+      USERNAME: ${{ github.event.pull_request.user.name }}
+
+  approve:
+    needs: checkIsOwner
     runs-on: ubuntu-latest
+    if: needs.checkIsOwner.outputs.IS_CODE_OWNER==true
     steps:
       - uses: actions/checkout@v3
         with:
@@ -15,8 +25,8 @@ jobs:
         with:
           node-version: 19
 
-      # Increase Version
-      - id: increaseVersion
-        name: Increase Version
-        run: |
-          echo "${{ github.event }}"
+      # Approve PR
+      - name: Approve PR
+        run: gh pr review ${{ github.event.pull_request.id }} --approve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
