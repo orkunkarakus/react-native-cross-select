@@ -17,11 +17,11 @@ try {
 
   if(owners.includes(username)){
     core.info(`${username} is code owner`)
-    core.setOutput("IS_CODE_OWNER", true);
+    core.setOutput("IS_CODE_OWNER", 'true');
   }
   else{
     core.info(`${username} is not code owner`)
-    core.setOutput("IS_CODE_OWNER", false);
+    core.setOutput("IS_CODE_OWNER", 'false');
   }
 } catch (error) {
   core.setFailed(error.message);
