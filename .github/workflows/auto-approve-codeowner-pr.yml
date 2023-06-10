@@ -22,7 +22,7 @@ jobs:
         name: Check Is Owner
         uses: orkunkarakus/react-native-cross-select/.github/action/isCodeOwner@main
         with:
-          USERNAME: ${{ github.event.pull_request.user.name }}
+          USERNAME: ${{ github.event.pull_request.user.login }}
 
       # Approve PR
       - name: Approve PR
