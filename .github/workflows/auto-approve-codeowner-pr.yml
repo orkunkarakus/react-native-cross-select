@@ -1,0 +1,22 @@
+# Check PR created by code owner and approve.
+
+name: Auto Approve Code Owner PR
+on:
+  workflow_dispatch:
+
+jobs:
+  isOwner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      # Increase Version
+      - id: increaseVersion
+        name: Increase Version
+        run: |
+          echo "${{ github.event }}"
