@@ -76,7 +76,8 @@ module.exports = {
     'default-param-last': 0,
     'react/display-name': [2, { 'ignoreTranspilerName': true }],
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': 'error'
+    '@typescript-eslint/no-shadow': 'error',
+    'react/require-default-props': 0
   },
   'overrides': [
     {

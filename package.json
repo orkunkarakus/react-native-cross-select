@@ -31,7 +31,7 @@
     "release:dry": "release-it --dry-run",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods",
+    "bootstrap": "yarn && yarn example && yarn pods",
     "pack-local": "npm pack",
     "changelog:stdout": "npx auto-changelog --stdout --commit-limit false -u --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs",
     "changelog": "npx auto-changelog -p"
@@ -66,7 +66,6 @@
     "@arkweid/lefthook": "^0.7.7",
     "@babel/eslint-parser": "^7.18.9",
     "@commitlint/config-conventional": "^17.6.3",
-    "@release-it/conventional-changelog": "^5.0.0",
     "@types/eslint": "^8.37.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
@@ -132,11 +131,6 @@
     },
     "github": {
       "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
     }
   },
   "react-native-builder-bob": {
@@ -149,9 +143,7 @@
     ]
   },
   "dependencies": {
-    "@gorhom/portal": "^1.0.14",
-    "react-native-click-outside": "^0.1.0",
-    "react-native-svg": "^13.9.0"
+    "@gorhom/portal": "1.0.14"
   },
   "directories": {
     "example": "example",

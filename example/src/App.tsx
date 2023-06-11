@@ -27,6 +27,10 @@ const App = () => {
         <Select data={MOCK_DATA} onSelect={handleChange} />
       </View>
       <View style={styles.box}>
+        <Text style={styles.text}>Single Select (Without Portal)</Text>
+        <Select data={MOCK_DATA} onSelect={handleChange} withPortal={false} />
+      </View>
+      <View style={styles.box}>
         <Text style={styles.text}>Multiple Select</Text>
         <MultipleSelect data={MOCK_DATA} onSelect={handleMultipleChange} />
       </View>
