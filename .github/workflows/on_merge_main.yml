@@ -35,7 +35,7 @@ jobs:
 
   # Release version to npm
   release:
-    needs: saveVersion
+    needs: [createNewVersion, saveVersion]
     secrets: inherit
     permissions:
       contents: write
