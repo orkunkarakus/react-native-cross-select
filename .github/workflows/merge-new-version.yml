@@ -95,7 +95,7 @@ jobs:
 
       # Approve PR
       - name: Approve PR
-        run: gh pr ${{ steps.createPR.outputs.PR_NUMBER }} review --approve
+        run: gh pr review ${{ steps.createPR.outputs.PR_NUMBER }} --approve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
