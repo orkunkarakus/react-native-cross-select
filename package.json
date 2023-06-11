@@ -43,7 +43,8 @@
     "dropdown",
     "portal",
     "cross select",
-    "multiple select"
+    "multiple select",
+    "ork"
   ],
   "repository": {
     "type": "git",
