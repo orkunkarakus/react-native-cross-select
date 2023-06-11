@@ -40,3 +40,5 @@ jobs:
     permissions:
       contents: write
     uses: orkunkarakus/react-native-cross-select/.github/workflows/release.yml@main
+    with:
+      VERSION: ${{ needs.createNewVersion.outputs.version }}
