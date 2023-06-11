@@ -27,8 +27,6 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "build": "bob build",
     "prepare": "yarn build",
-    "release": "release-it",
-    "release:dry": "release-it --dry-run",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn && yarn example && yarn pods",
@@ -93,7 +91,6 @@
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-builder-bob": "^0.18.3",
-    "release-it": "^15.0.0",
     "semver": "^7.5.1",
     "typescript": "^4.5.2"
   },
@@ -115,26 +112,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "requireBranch": "main",
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}",
-      "changelog": "npm run changelog:stdout"
-    },
-    "hooks": {
-      "before:init": [
-        "git pull"
-      ],
-      "after:bump": "npm run changelog"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    }
   },
   "react-native-builder-bob": {
     "source": "src",
