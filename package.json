@@ -44,7 +44,8 @@
     "portal",
     "cross select",
     "multiple select",
-    "ork"
+    "ork",
+    "react"
   ],
   "repository": {
     "type": "git",
